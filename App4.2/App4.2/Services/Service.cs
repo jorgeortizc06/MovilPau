@@ -12,7 +12,7 @@ namespace App4_2.Services
     {
         HttpClient client;
 
-        string url = "https://10.0.2.2:44399/";
+        string url = "http://10.0.2.2:44399/";
         //string url = "http://zeus.apolosoftware.com.ec/Test/";
         public Service()
         {
