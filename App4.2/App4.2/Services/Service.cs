@@ -106,20 +106,28 @@ namespace App4_2.Services
 
         public async Task<bool> ProductoUpdateAsync(Producto model)
         {
-            Uri uri = new Uri(url + "api/Producto/Update");
-
-            string json = JsonSerializer.Serialize(model);
-
-            StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
-
-            HttpResponseMessage response = await client.PostAsync(uri, httpContent);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                return true;
-            }
+                Uri uri = new Uri(url + "api/Producto/Update");
 
-            return false;
+                string json = JsonSerializer.Serialize(model);
+
+                StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PutAsync(uri, httpContent);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            
         }
 
         public async Task<bool> ProductoDeleteAsync(Producto model)
